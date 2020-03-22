@@ -58,7 +58,7 @@ const focusOnSearchInput = function (document) {
  * @returns {boolean}
  */
 document.onkeypress = function (event) {
-    if (!(event.key === '/' && event.target.localName === 'body')) {
+    if (event.key !== '/' || event.target.localName !== 'body') {
         return true;
     }
 
