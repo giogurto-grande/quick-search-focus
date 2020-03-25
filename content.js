@@ -1,4 +1,4 @@
-const findSearchInput = function (document) {
+const findFirstVisibleSearchInput = function (document) {
     const elements = document.getElementsByTagName('input');
 
     for (let i in elements) {
@@ -32,8 +32,31 @@ const findFirstVisibleTextInput = function (document) {
     return null;
 };
 
+const findFirstVisibleInputNamedSearch = function (document) {
+    const elements = document.getElementsByName('search');
+
+    for (let i in elements) {
+        if (!elements.hasOwnProperty(i)) {
+            continue;
+        }
+
+        const element = elements[i];
+        if (element.getAttribute('type') === 'text' && element.offsetParent !== null) {
+            return element;
+        }
+    }
+
+    return null;
+};
+
 const findSearchBox = function (document) {
-    let element = findSearchInput(document);
+    let element = findFirstVisibleSearchInput(document);
+
+    if (element !== null) {
+        return element;
+    }
+
+    element = findFirstVisibleInputNamedSearch(document);
 
     if (element !== null) {
         return element;
