@@ -1,52 +1,28 @@
-const findFirstVisibleSearchInput = function (document) {
-    const elements = document.getElementsByTagName('input');
-
+function findFirstVisibleInputOfType(elements, type) {
     for (let i in elements) {
         if (!elements.hasOwnProperty(i)) {
             continue;
         }
 
         const element = elements[i];
-        if (element.getAttribute('type') === 'search' && element.offsetParent !== null) {
+        if (element.getAttribute('type') === type && element.offsetParent !== null) {
             return element;
         }
     }
 
     return null;
+}
+
+const findFirstVisibleSearchInput = function (document) {
+    return findFirstVisibleInputOfType(document.getElementsByTagName('input'), 'search');
 };
 
 const findFirstVisibleTextInput = function (document) {
-    const elements = document.getElementsByTagName('input');
-
-    for (let i in elements) {
-        if (!elements.hasOwnProperty(i)) {
-            continue;
-        }
-
-        const element = elements[i];
-        if (element.getAttribute('type') === 'text' && element.offsetParent !== null) {
-            return element;
-        }
-    }
-
-    return null;
+    return findFirstVisibleInputOfType(document.getElementsByTagName('input'), 'text');
 };
 
 const findFirstVisibleInputNamedSearch = function (document) {
-    const elements = document.getElementsByName('search');
-
-    for (let i in elements) {
-        if (!elements.hasOwnProperty(i)) {
-            continue;
-        }
-
-        const element = elements[i];
-        if (element.getAttribute('type') === 'text' && element.offsetParent !== null) {
-            return element;
-        }
-    }
-
-    return null;
+    return findFirstVisibleInputOfType(document.getElementsByName('search'), 'text');
 };
 
 const findSearchBox = function (document) {
