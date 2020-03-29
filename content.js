@@ -46,6 +46,7 @@ const focusOnSearchInput = function (document) {
 
     if (element !== null) {
         element.focus();
+        element.select();
         return false;
     }
 
