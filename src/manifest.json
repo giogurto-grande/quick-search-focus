@@ -3,7 +3,9 @@
   "name": "Quick Search Focus",
   "version": "0.5",
   "description": "This Chrome Extension enables you to focus on any page's search box using the forward slash key.",
-  "permissions": [],
+  "permissions": [
+    "storage"
+  ],
   "content_scripts": [
     {
       "matches": [
