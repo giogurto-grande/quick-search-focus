@@ -2,8 +2,10 @@
   "manifest_version": 2,
   "name": "Quick Search Focus",
   "version": "0.5",
-  "description": "This Chrome Extension enables you to quickly focus on the search box of the web page you're currently viewing without reaching your mouse or repeatedly pressing the Tab key. Just use the forward slash key (/)!",
-  "permissions": [],
+  "description": "This Chrome Extension enables you to focus on any page's search box using the forward slash key.",
+  "permissions": [
+    "storage"
+  ],
   "content_scripts": [
     {
       "matches": [
@@ -13,6 +15,14 @@
       "js": ["content.js"]
     }
   ],
+  "browser_action": {
+    "default_icon": {
+      "32": "icons/icon32.png",
+      "16": "icons/icon16.png"
+    },
+    "default_title": "Quick Search Focus",
+    "default_popup": "browser-action.html"
+  },
   "icons": {
     "128": "icons/icon128.png",
     "48": "icons/icon48.png",
