@@ -53,14 +53,37 @@ const focusOnSearchInput = function (document) {
     return true;
 };
 
-/**
- * @param {{ key: string, target: {localName} }} event
- * @returns {boolean}
- */
-document.onkeypress = function (event) {
-    if (event.key !== '/' || event.target.localName !== 'body') {
-        return true;
+chrome.storage.sync.get({
+    pageLoad: false,
+    slashKey: true
+}, function (items) {
+
+    if (items.pageLoad) {
+        enablePageLoad();
     }
 
-    return focusOnSearchInput(this);
+    if (items.slashKey) {
+        enableSlashKey();
+    }
+
+});
+
+const enablePageLoad = function () {
+    focusOnSearchInput(document);
+};
+
+
+const enableSlashKey = function () {
+    /**
+     * @param {{ key: string, target: {localName} }} event
+     * @returns {boolean}
+     */
+    document.onkeypress = function (event) {
+
+        if (event.key !== '/' || event.target.localName !== 'body') {
+            return true;
+        }
+
+        return focusOnSearchInput(this);
+    };
 };
